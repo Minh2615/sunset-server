@@ -1,5 +1,8 @@
 const express = require('express');
 var RouterSunSet = express.Router();
+const jwt = require('jsonwebtoken'); // Add this line for token generation
+const bcrypt = require('bcryptjs'); // Add this line for password encryption
+
 const UserModal = require('../../db/users/users');
 
 //create router
@@ -55,7 +58,7 @@ RouterSunSet.post('/login', async (req, res) => {
         // Check if the password is correct
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) {
-            return res.status(401).json({ error: 'Invalid username or password' });
+            return res.status(401).json({ error: 'Password is wrong!' });
         }
 
         // Generate a JWT token for authentication
