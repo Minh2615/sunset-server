@@ -3,7 +3,7 @@ const app = express();
 const port = 8081;
 const path = require('path');
 
-app.use(express.static('public'));
+app.use('/',express.static(path.join(__dirname, '/public')));
 
 // body-parser
 var bodyParser = require('body-parser')
