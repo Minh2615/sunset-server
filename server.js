@@ -1,13 +1,17 @@
 const express = require('express');
 const app = express();
-// const port = 8081;
+const port = 8081;
 const path = require('path');
+
+var cors = require('cors');
+app.use(cors());
 
 app.use('/',express.static(path.join(__dirname, '/public')));
 
 // body-parser
 var bodyParser = require('body-parser')
-var RouterSunSet = require('./api/user/users-api');
+var RouterUserSunSet = require('./api/user/users-api');
+var RouterProfileSunset = require('./api/profile/profiles-api');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -15,7 +19,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
 // api
-app.use('/sunset/api/v1', RouterSunSet);
+app.use("/sunset/api/users/v1", RouterUserSunSet);
+app.use("/sunset/api/profiles/v1", RouterProfileSunset);
+app.get('/sunset/api/v1', (req, res) => {
+    res.send('Hello World!');
+});
 
 // server start
 app.get('/', (req, res) => {
@@ -23,6 +31,6 @@ app.get('/', (req, res) => {
     res.sendFile(pathHtml);
 });
 
-app.listen(process.env.PORT, function(){
+app.listen(port, function(){
 
 });
