@@ -43,6 +43,13 @@ const Profiles = new Schema(
     Financial: Array,
     Regulations: Array,
     ID: String,
+    Created: String,
+    Updated: String,
+    AvailableAt: String,
+    Activities: Array,
+    Orientations:Array,
+    Services: Array,
+    Proximities: Array,
   },
   {
     collection: "Profiles",
