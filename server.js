@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const port = 8081;
 const path = require('path');
 
 var cors = require('cors');
@@ -31,6 +30,8 @@ app.get('/', (req, res) => {
     res.sendFile(pathHtml);
 });
 
-app.listen(port, function(){
-
+//get port from ecosystem.config.js
+const port = process.env.port || 1001;
+app.listen(port, () => {
+    console.log(`Sunset server listening at http://localhost:${port}`);
 });
